@@ -10,7 +10,7 @@
 
     <!-- JS -->
     <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
-    <script type="text/javascript" src="js/texter.js"></script>
+    <script type="text/javascript" src="js/typaint.js"></script>
   </head>
 
   <body>
@@ -21,33 +21,33 @@
     <!-- APP -->
     <canvas id="canvas"></canvas>
     <script>
-      var texter = new Texter();
-      texter.initialize();
+      var typaint = new Typaint();
+      typaint.initialize();
 
       var gui = new dat.GUI();
       gui
-        .add(texter, "text")
+        .add(typaint, "text")
         .name("Text")
         .onChange(function () {
-          texter.onTextChange();
+          typaint.onTextChange();
         });
-      gui.add(texter, "minFontSize", 3, 100).name("Minimum Size");
-      gui.add(texter, "maxFontSize", 3, 400).name("Maximum Size");
-      gui.add(texter, "angleDistortion", 0, 2).step(0.1).name("Random Angle");
+      gui.add(typaint, "minFontSize", 3, 100).name("Minimum Size");
+      gui.add(typaint, "maxFontSize", 3, 400).name("Maximum Size");
+      gui.add(typaint, "angleDistortion", 0, 2).step(0.1).name("Random Angle");
       gui
-        .addColor(texter, "textColor")
+        .addColor(typaint, "textColor")
         .name("Text Color")
         .onChange(function (value) {
-          texter.applyNewColor(value);
+          typaint.applyNewColor(value);
         });
       gui
-        .addColor(texter, "bgColor")
+        .addColor(typaint, "bgColor")
         .name("Background Color")
         .onChange(function (value) {
-          texter.setBackground(value);
+          typaint.setBackground(value);
         });
-      gui.add(texter, "clear").name("Clear");
-      gui.add(texter, "save").name("Save");
+      gui.add(typaint, "clear").name("Clear");
+      gui.add(typaint, "save").name("Save");
     </script>
 
     <!-- Misc -->

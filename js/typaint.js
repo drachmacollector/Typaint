@@ -1,4 +1,4 @@
-function Texter() {
+function Typaint() {
   var _this = this;
 
   // Application variables
