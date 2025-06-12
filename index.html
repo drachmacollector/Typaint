@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Typaint - Draw with Words</title>
+    <meta name="description" content="A creative tool that allows you to draw with words.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <!-- JS -->
+    <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/texter.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+
+    <script type="text/javascript" src="js/header.js"></script>
+
+    <!-- APP -->
+    <canvas id="canvas"></canvas>
+    <script>
+      var texter = new Texter();
+      texter.initialize();
+
+      var gui = new dat.GUI();
+      gui
+        .add(texter, "text")
+        .name("Text")
+        .onChange(function () {
+          texter.onTextChange();
+        });
+      gui.add(texter, "minFontSize", 3, 100).name("Minimum Size");
+      gui.add(texter, "maxFontSize", 3, 400).name("Maximum Size");
+      gui.add(texter, "angleDistortion", 0, 2).step(0.1).name("Random Angle");
+      gui
+        .addColor(texter, "textColor")
+        .name("Text Color")
+        .onChange(function (value) {
+          texter.applyNewColor(value);
+        });
+      gui
+        .addColor(texter, "bgColor")
+        .name("Background Color")
+        .onChange(function (value) {
+          texter.setBackground(value);
+        });
+      gui.add(texter, "clear").name("Clear");
+      gui.add(texter, "save").name("Save");
+    </script>
+
+    <!-- Misc -->
+    <script>
+      !(function (d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (!d.getElementById(id)) {
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "http://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }
+      })(document, "script", "twitter-wjs");
+    </script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(["_setAccount", "UA-22825241-1"]);
+      _gaq.push(["_trackPageview"]);
+
+      (function () {
+        var ga = document.createElement("script");
+        ga.type = "text/javascript";
+        ga.async = true;
+        ga.src =
+          ("https:" == document.location.protocol
+            ? "https://ssl"
+            : "http://www") + ".google-analytics.com/ga.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
