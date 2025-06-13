@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var clearBtn = document.getElementById('clear-btn');
   var saveBtn = document.getElementById('save-btn');
   var undoBtn = document.getElementById('undo-btn');
+  var redoBtn = document.getElementById('redo-btn');
 
   // Set initial values from Typaint
   wordInput.value = typaint.text;
@@ -102,5 +103,10 @@ window.addEventListener('DOMContentLoaded', function () {
   // Undo
   undoBtn.addEventListener('click', function () {
     typaint.undo();
+  });
+
+  // Redo
+  redoBtn.addEventListener('click', function () {
+    typaint.redo();
   });
 }); 

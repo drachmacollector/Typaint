@@ -11,6 +11,7 @@ function Typaint() {
   this.angleDistortion = 0.01;
 
   var strokes = [];
+  var redoStack = [];
   var currentStroke = null;
 
   var queryString = window.location.search;
@@ -159,6 +160,8 @@ function Typaint() {
     // Start a new stroke
     currentStroke = [];
     strokes.push(currentStroke);
+    // Clear redo stack on new draw
+    redoStack.length = 0;
   };
 
   var onUp = function () {
@@ -188,12 +191,26 @@ function Typaint() {
     context.fillStyle = _this.textColor;
     strokes.length = 0;
     currentStroke = null;
+    redoStack.length = 0;
   };
 
   this.undo = function () {
     if (strokes.length > 0) {
-      strokes.pop();
+      var popped = strokes.pop();
+      if (popped) {
+        redoStack.push(popped);
+      }
       redrawAllStrokes();
+    }
+  };
+
+  this.redo = function () {
+    if (redoStack.length > 0) {
+      var restored = redoStack.pop();
+      if (restored) {
+        strokes.push(restored);
+        redrawAllStrokes();
+      }
     }
   };
 

@@ -46,12 +46,14 @@
         <input id="angle-distortion" type="range" min="0" max="2" step="0.01" value="0" />
         <input id="angle-distortion-value" type="number" min="0" max="2" step="0.01" value="0" class="sidepanel-value-input" />
       </div>
-      <div class="sidepanel-buttons">
-        <button id="clear-btn">🗑️ Clear</button>
+      <div class="sidepanel-row sidepanel-buttons" style="margin-bottom: 0;">
         <button id="undo-btn">↩️ Undo</button>
-      </div>        
-        <button id="save-btn">⬇️ Save Image</button><br>
-
+        <button id="redo-btn">↪️ Redo</button>
+      </div>
+      <div class="sidepanel-row sidepanel-buttons">
+        <button id="clear-btn">🗑️ Clear</button>
+        <button id="save-btn">⬇️ Save Image</button>
+      </div>
     </div>
     <canvas id="canvas"></canvas>
     <script type="text/javascript" src="js/sidepanel.js"></script>
