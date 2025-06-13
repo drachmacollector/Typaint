@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var angleDistortionValue = document.getElementById('angle-distortion-value');
   var clearBtn = document.getElementById('clear-btn');
   var saveBtn = document.getElementById('save-btn');
+  var undoBtn = document.getElementById('undo-btn');
 
   // Set initial values from Typaint
   wordInput.value = typaint.text;
@@ -96,5 +97,10 @@ window.addEventListener('DOMContentLoaded', function () {
   // Save
   saveBtn.addEventListener('click', function () {
     typaint.save();
+  });
+
+  // Undo
+  undoBtn.addEventListener('click', function () {
+    typaint.undo();
   });
 }); 

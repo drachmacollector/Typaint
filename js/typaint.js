@@ -10,6 +10,9 @@ function Typaint() {
   this.maxFontSize = 300;
   this.angleDistortion = 0.01;
 
+  var strokes = [];
+  var currentStroke = null;
+
   var queryString = window.location.search;
   var urlParams = new URLSearchParams(queryString);
   var urlText = urlParams.get('text')
@@ -92,6 +95,19 @@ function Typaint() {
         context.fillText(letter, 0, 0);
         context.restore();
 
+        // Save this action to the current stroke
+        if (currentStroke) {
+          currentStroke.push({
+            x: position.x,
+            y: position.y,
+            fontSize: fontSize,
+            angle: angle,
+            letter: letter,
+            textColor: _this.textColor,
+            angleDistortion: _this.angleDistortion
+          });
+        }
+
         textIndex++;
         if (textIndex > _this.text.length - 1) {
           textIndex = 0;
@@ -99,6 +115,23 @@ function Typaint() {
 
         position.x = position.x + Math.cos(angle) * stepSize;
         position.y = position.y + Math.sin(angle) * stepSize;
+      }
+    }
+  };
+
+  var redrawAllStrokes = function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < strokes.length; i++) {
+      var stroke = strokes[i];
+      for (var j = 0; j < stroke.length; j++) {
+        var action = stroke[j];
+        context.font = action.fontSize + "px Georgia";
+        context.fillStyle = action.textColor;
+        context.save();
+        context.translate(action.x, action.y);
+        context.rotate(action.angle + (Math.random() * (action.angleDistortion * 2) - action.angleDistortion));
+        context.fillText(action.letter, 0, 0);
+        context.restore();
       }
     }
   };
@@ -123,10 +156,14 @@ function Typaint() {
     position.y = eventObject.pageY;
     mouse.x = eventObject.pageX;
     mouse.y = eventObject.pageY;
+    // Start a new stroke
+    currentStroke = [];
+    strokes.push(currentStroke);
   };
 
   var onUp = function () {
     mouse.down = false;
+    currentStroke = null;
   };
 
   var onMove = function (event) {
@@ -149,6 +186,15 @@ function Typaint() {
   this.clear = function () {
     canvas.width = canvas.width;
     context.fillStyle = _this.textColor;
+    strokes.length = 0;
+    currentStroke = null;
+  };
+
+  this.undo = function () {
+    if (strokes.length > 0) {
+      strokes.pop();
+      redrawAllStrokes();
+    }
   };
 
   this.applyNewColor = function (value) {
