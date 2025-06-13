@@ -80,6 +80,7 @@ function Typaint() {
         var angle = Math.atan2(mouse.y - position.y, mouse.x - position.x);
 
         context.font = fontSize + "px Georgia";
+        context.fillStyle = _this.textColor;
 
         context.save();
         context.translate(position.x, position.y);

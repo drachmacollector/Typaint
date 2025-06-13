@@ -175,3 +175,129 @@ canvas {
 #info-tab iframe {
     vertical-align: bottom;
 }
+
+/* ----- SIDEPANEL ----- */
+.sidepanel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 320px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+padding: 1.5rem 1.25rem 1.25rem 1.25rem;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'Cambria', Arial, sans-serif;
+}
+.sidepanel h2 {
+  justify-content: center;
+  font-size: 1.25rem;
+  margin: 0 0 12px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sidepanel label {
+  font-size: 1rem;
+  color: #222;
+  margin-bottom: 2px;
+  margin-top: 8px;
+}
+.sidepanel input[type="text"] {
+  width: 90%;
+  padding: 8px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f5f5f5;
+  margin-bottom: 4px;
+}
+.sidepanel input[type="color"] {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+.sidepanel input[type="range"] {
+  width: 100%;
+  margin: 0 0 8px 0;
+  accent-color: #3b82f6;
+}
+.sidepanel-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+.sidepanel button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.sidepanel button#clear-btn {
+  background: #f3f4f6;
+  color: #222;
+  border: 1px solid #e0e0e0;
+}
+.sidepanel button#clear-btn:hover {
+  background: #e5e7eb;
+}
+.sidepanel button#save-btn:hover {
+  background: #2563eb;
+}
+@media (max-width: 600px) {
+  .sidepanel {
+    width: 95vw;
+    left: 2vw;
+    padding: 12px 6px 12px 6px;
+  }
+}
+.sidepanel-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.sidepanel-row label {
+  min-width: 110px;
+  margin: 0;
+}
+.sidepanel input[type="color"] {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  display: inline-block;
+}
+.sidepanel-value-input {
+  width: 48px;
+  margin-left: 6px;
+  padding: 4px 6px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: #f5f5f5;
+  text-align: right;
+}
+.sidepanel input[type="range"] {
+  flex: 1 1 60%;
+  margin: 0;
+}
+.sidepanel input[type="text"] {
+  width: 90%;
+}

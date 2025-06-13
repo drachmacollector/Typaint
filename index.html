@@ -9,7 +9,6 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- JS -->
-    <script type="text/javascript" src="js/libs/dat.gui.min.js"></script>
     <script type="text/javascript" src="js/typaint.js"></script>
   </head>
 
@@ -18,35 +17,39 @@
     <script type="text/javascript" src="js/header.js"></script>
 
     <!-- APP -->
+    <div class="sidepanel">
+      <h2> Controls</h2>
+      <label for="word-input">Word</label>
+      <input id="word-input" type="text" value="Word" />
+      <div class="sidepanel-row">
+        <label for="text-color">Text Color</label>
+        <input id="text-color" type="color" value="#333333" />
+      </div>
+      <div class="sidepanel-row">
+        <label for="bg-color">Background Color</label>
+        <input id="bg-color" type="color" value="#F5F5F5" />
+      </div>
+      <div class="sidepanel-row">
+        <label for="min-font-size">Min Font Size (10px)</label>
+        <input id="min-font-size" type="range" min="3" max="100" value="10" />
+        <input id="min-font-size-value" type="number" min="3" max="100" value="10" class="sidepanel-value-input" />
+      </div>
+      <div class="sidepanel-row">
+        <label for="max-font-size">Max Font Size (100px)</label>
+        <input id="max-font-size" type="range" min="3" max="400" value="100" />
+        <input id="max-font-size-value" type="number" min="3" max="400" value="100" class="sidepanel-value-input" />
+      </div>
+      <div class="sidepanel-row">
+        <label for="angle-distortion">Random Angle (0°)</label>
+        <input id="angle-distortion" type="range" min="0" max="2" step="0.01" value="0" />
+        <input id="angle-distortion-value" type="number" min="0" max="2" step="0.01" value="0" class="sidepanel-value-input" />
+      </div>
+      <div class="sidepanel-buttons">
+        <button id="clear-btn">🗑️ Clear</button>
+        <button id="save-btn">⬇️ Save Image</button>
+      </div>
+    </div>
     <canvas id="canvas"></canvas>
-    <script>
-      var typaint = new Typaint();
-      typaint.initialize();
-
-      var gui = new dat.GUI();
-      gui
-        .add(typaint, "text")
-        .name("Text")
-        .onChange(function () {
-          typaint.onTextChange();
-        });
-      gui.add(typaint, "minFontSize", 3, 100).name("Minimum Size");
-      gui.add(typaint, "maxFontSize", 3, 400).name("Maximum Size");
-      gui.add(typaint, "angleDistortion", 0, 2).step(0.1).name("Random Angle");
-      gui
-        .addColor(typaint, "textColor")
-        .name("Text Color")
-        .onChange(function (value) {
-          typaint.applyNewColor(value);
-        });
-      gui
-        .addColor(typaint, "bgColor")
-        .name("Background Color")
-        .onChange(function (value) {
-          typaint.setBackground(value);
-        });
-      gui.add(typaint, "clear").name("Clear");
-      gui.add(typaint, "save").name("Save");
-    </script>
+    <script type="text/javascript" src="js/sidepanel.js"></script>
   </body>
 </html>
