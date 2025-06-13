@@ -177,6 +177,9 @@ canvas {
 }
 
 /* ----- SIDEPANEL ----- */
+img{
+  width: 7%;
+}
 .sidepanel {
   position: fixed;
   top: 20px;
